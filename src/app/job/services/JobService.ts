@@ -18,7 +18,7 @@ class JobService{
         }
     }
     
-    async findByFilter(idUser: string, data: JobDto){
+    async findByFilter(idUser: string, data: any){
         try {
             const jobAlready = await this.repositoryJob.findByFilter(data)
             if(jobAlready.length === 0){
@@ -45,7 +45,6 @@ class JobService{
 
             await this.repositoryUser.searchHistoryRecord(idUser, jobAlready)
             return jobAlready
-
         } catch(err: any){
             return DefaultError.messageError("Não foi possível realizar a pesquisa, tente novamente mais tarde", STATUS_CODE.INTERNAO_SERVER_ERROR)
         }

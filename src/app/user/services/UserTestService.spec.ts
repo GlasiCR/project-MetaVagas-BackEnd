@@ -49,17 +49,18 @@ describe("function update()", () => {
         expect(result).toStrictEqual(DefaultError.messageError("Usuário não encontrado", STATUS_CODE.NOT_FOUND))
     })
 
-    // it("Should be able to update data", async () => {
-    //     const paramMockId = {id: "1"}
-    //     const paramMockData = {name: "Nome do Usuário", email: "email@usuario.com", password: "senhaUsuário"}
-    //     vi.spyOn(repositoryMock, "findById").mockResolvedValue(true)
-    //     vi.spyOn(Crypt, "toEncrypt").mockReturnValue("senha criptografada") 
-
-    //     const result = await sut.update(paramMockId as any as string, paramMockData)
-    //     const expected = {name: "Nome do Usuário", email: "email@usuario.com", password: "senha criptografada"}
-
-    //     expect(result).toStrictEqual(expected)
-    // })
+    it("Should be able to update data", async () => {
+        const paramMockId = {id: "1"}
+        const paramMockData = {name: "Nome do Usuário", email: "email@usuario.com", password: "senhaUsuário"}
+        const expected = {name: "Nome do Usuário", email: "email@usuario.com", password: "senha criptografada"}
+        vi.spyOn(repositoryMock, "findById").mockResolvedValue(true)
+        vi.spyOn(Crypt, "toEncrypt").mockReturnValue("senha criptografada") 
+        vi.spyOn(repositoryMock, "update").mockResolvedValue(expected)
+        
+        const result = await sut.update(paramMockId as any as string, paramMockData)
+        
+        expect(result).toStrictEqual(expected)
+    })
 
     it("Should return to handle error when doesn't get to update data", async () => {
         const paramMockId = { id: "1" }

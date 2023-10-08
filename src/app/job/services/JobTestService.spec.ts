@@ -3,7 +3,7 @@ import { JobService } from "./JobService"
 import { STATUS_CODE } from "../../../utils/statusCode/StatusCode"
 import { DefaultError } from "../../../utils/defaultErrors/DefaultError"
 
-const repositoryJobMock = { create: vi.fn(), findByFilter: vi.fn(), showJobsPublic: vi.fn(), getJobByPagination: vi.fn() }
+const repositoryJobMock = { create: vi.fn(), findByFilter: vi.fn(), showJobsPublic: vi.fn(), getJobByPagination: vi.fn(), findByFilterNotLogged: vi.fn() }
 const repositoryTechSearchMock = { findByTech: vi.fn() }
 const repositoryUser = {}
 const sut = new JobService(repositoryJobMock, repositoryTechSearchMock, repositoryUser)
@@ -61,30 +61,29 @@ describe("function findByFilter()", async () => {
         expect(result).toStrictEqual(DefaultError.messageError("Não há dados para a pesquisa", STATUS_CODE.NOT_FOUND))
     })   
     
-    // it("Should return the list of jobs that find the search criteria", async () => {
-    //     const paramMockId = "1"
-    //     const paramMockObj = { technology: "tecnologia", location: "cidade" }
-    //     const paramMockJob = [{id: "1", technology: "tecnologia", location: "cidade"}]
-    //     const returnExpected = {
-    //         id: "1",
-    //         company: "Empresa",
-    //         salary: 2500,
-    //         careerLevel: "Analista Pleno",
-    //         jobWebsite: "www.meuemprego.com/",
-    //         jobDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //         websiteLink: "www.meuemprego.com/vaga",
-    //         location: "cidade",
-    //         createdAt: "2023-09-25T02:33:22.983Z",
-    //         updatedAt: "2023-09-25T02:33:22.983Z",
-    //         technology: ["tecnologia"],
-    //         searchHistory: []
-    //     }
-    //     vi.spyOn(repositoryJobMock, "findByFilter").mockReturnValue(paramMockJob)
+    it("Should return the list of jobs that find the search criteria", async () => {
+        const paramMockId = "1"
+        const paramMockObj = { technology: "tecnologia", location: "cidade" }
+        const returnExpected = {
+            id: "1",
+            company: "Empresa",
+            salary: 2500,
+            careerLevel: "Analista Pleno",
+            jobWebsite: "www.meuemprego.com/",
+            jobDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            websiteLink: "www.meuemprego.com/vaga",
+            location: "cidade",
+            createdAt: "2023-09-25T02:33:22.983Z",
+            updatedAt: "2023-09-25T02:33:22.983Z",
+            technology: ["tecnologia"],
+            searchHistory: []
+        }
+        vi.spyOn(repositoryJobMock, "findByFilter").mockResolvedValue(returnExpected)
         
-    //     const result = await sut.findByFilter(paramMockId, paramMockObj)
+        const result = await sut.findByFilter(paramMockId, paramMockObj)
 
-    //     expect(result).toStrictEqual(paramMockJob)
-    // })
+        expect(result).toStrictEqual(returnExpected)
+    })
 
     it("Should return to handle error when doesn't get to search in database", async () => {
         const paramMockId = "1"
@@ -99,7 +98,28 @@ describe("function findByFilter()", async () => {
         expect(result).toStrictEqual(DefaultError.messageError("Não foi possível realizar a pesquisa, tente novamente mais tarde", STATUS_CODE.INTERNAO_SERVER_ERROR))
     })
 })
+describe("findByFilterNotLogged", async () => {
+    it("Should be able return an error if job not exists", async () => {
+        const paramMockObj = { technology: "tecnologia", location: "cidade" } as any
+        vi.spyOn(repositoryJobMock, "findByFilterNotLogged").mockReturnValue([])
 
+        const result = await sut.findByFilterNotLogged(paramMockObj)
+
+        expect(result).toStrictEqual(DefaultError.messageError("Não há dados para a pesquisa", STATUS_CODE.NOT_FOUND))
+    })   
+
+    it("Should return to handle error when doesn't get to search in database", async () => {
+        const paramMockObj = {
+            technology: "tecnologia",
+            location: "cidade"
+        } as any
+        vi.spyOn(repositoryJobMock, "findByFilterNotLogged").mockRejectedValue(new Error("Não foi possível realizar a pesquisa, tente novamente mais tarde"))
+
+        const result = await sut.findByFilterNotLogged(paramMockObj)
+
+        expect(result).toStrictEqual(DefaultError.messageError("Não foi possível realizar a pesquisa, tente novamente mais tarde", STATUS_CODE.INTERNAO_SERVER_ERROR))
+    })
+})
 describe("function showJobsPublic()", async () => {
     it("Should be able to return the list of jobs", async () => {
         const paramMockLimitedByPage = 2

@@ -26,7 +26,8 @@ class TechSearchRepository {
     async showTechMoreSearch() {
         return this.model.aggregate([
             { $group: { _id: "$technology", total: { $sum: "$count" } } },
-            { $sort: { total: -1 } }
+            { $sort: { total: -1 } },
+            { $limit: 5 }
         ]);
     }
 
@@ -34,6 +35,7 @@ class TechSearchRepository {
         return this.model.aggregate([
             { $match: { technology: nameTech, location: { $exists: true, $ne: "" } } },
             { $sort: { count: -1 } },
+            { $limit: 5 }
         ]);
     }
 
