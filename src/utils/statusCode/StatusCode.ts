@@ -1,0 +1,11 @@
+const STATUS_CODE = {
+    BAD_REQUEST: 400,
+    CREATED: 201,
+    CONFLICT: 409,
+    INTERNAO_SERVER_ERROR: 500, 
+    UNAUTHORIZED: 401,
+    OK: 200,
+    NOT_FOUND: 404,
+  }
+  
+  export { STATUS_CODE }
