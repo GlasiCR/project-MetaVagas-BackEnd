@@ -19,6 +19,7 @@ class UserService {
             password: Crypt.toEncrypt(user.password as string)
         }
         return this.repository.create(newUser)
+    
     }
 
     async update(id: string, user: UserDto) {

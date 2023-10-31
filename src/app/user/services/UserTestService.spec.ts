@@ -149,56 +149,56 @@ describe("function includeAndExcludeFavoriteJob()", () => {
     })
 })
 
-// describe("function excludeFavoriteJob()", () => {
-//     it("Should return an error if user not exist", async () => {
-//         const paramMock = { idUser: "1", idJob: "2" }
-//         vi.spyOn(repositoryMock, "findById").mockReturnValue(false)
+describe("function excludeFavoriteJob()", () => {
+    it("Should return an error if user not exist", async () => {
+        const paramMock = { idUser: "1", idJob: "2" }
+        vi.spyOn(repositoryMock, "findById").mockReturnValue(false)
 
-//         const result = await sut.includeAndExcludeFavoriteJob(paramMock)
+        const result = await sut.includeAndExcludeFavoriteJob(paramMock)
 
-//         expect(result).toStrictEqual(DefaultError.messageError("Usuário não existe", STATUS_CODE.NOT_FOUND))
-//     })
+        expect(result).toStrictEqual(DefaultError.messageError("Usuário não existe", STATUS_CODE.NOT_FOUND))
+    })
 
-//     it("Should return an error if job not exist", async () => {
-//         const paramMock = { idUser: "1", idJob: "2" }
-//         vi.spyOn(repositoryMock, "findById").mockReturnValue({})
-//         vi.spyOn(repositoryJobMock, "findById").mockReturnValue(false)
+    it("Should return an error if job not exist", async () => {
+        const paramMock = { idUser: "1", idJob: "2" }
+        vi.spyOn(repositoryMock, "findById").mockReturnValue({})
+        vi.spyOn(repositoryJobMock, "findById").mockReturnValue(false)
 
-//         const result = await sut.excludeFavoriteJob(paramMock)
+        const result = await sut.excludeFavoriteJob(paramMock)
 
-//         expect(result).toStrictEqual(DefaultError.messageError("Vaga não existe", STATUS_CODE.NOT_FOUND))
-//     })
+        expect(result).toStrictEqual(DefaultError.messageError("Vaga não existe", STATUS_CODE.NOT_FOUND))
+    })
 
-//     it("Should be able to exclude the job as the user's favorites", async () => {
-//         const paramMock = { idUser: "1", idJob: "2" }
-//         const expected = {
-//             id: "1",
-//             name: "Nome do Usuário",
-//             email: "email@usuario.com",
-//             password: "senhaUsuário",
-//             createdAt: "2023-09-24T00:33:11.137Z",
-//             updatedAt: "2023-09-30T01:27:44.582Z",
-//             jobFavorite: [{ idJob: "2" }]
-//         }
+    it("Should be able to exclude the job as the user's favorites", async () => {
+        const paramMock = { idUser: "1", idJob: "2" }
+        const expected = {
+            id: "1",
+            name: "Nome do Usuário",
+            email: "email@usuario.com",
+            password: "senhaUsuário",
+            createdAt: "2023-09-24T00:33:11.137Z",
+            updatedAt: "2023-09-30T01:27:44.582Z",
+            jobFavorite: [{ idJob: "2" }]
+        }
         
-//         vi.spyOn(repositoryMock, "findById").mockReturnValue({})
-//         vi.spyOn(repositoryJobMock, "findById").mockReturnValue({})
-//         vi.spyOn(repositoryMock, "excludeFavoriteJob").mockReturnValue(expected)
+        vi.spyOn(repositoryMock, "findById").mockReturnValue({})
+        vi.spyOn(repositoryJobMock, "findById").mockReturnValue({})
+        vi.spyOn(repositoryMock, "excludeFavoriteJob").mockReturnValue(expected)
 
-//         const result = await sut.excludeFavoriteJob(paramMock)
+        const result = await sut.excludeFavoriteJob(paramMock)
  
-//         expect(result).toStrictEqual(expected)
-//     })
+        expect(result).toStrictEqual(expected)
+    })
 
-//     it("Should return to handle with a throw new error in excludeFavoriteJob", async () => {
-//         const paramMock = { idUser: "1", idJob: "2" }
-//         const returnError = "Lamentamos, mas parece que estamos enfrentando um problema temporário em nosso servidor. Fique tranquilo, nossa equipe já está trabalhando para resolver isso. Infelizmente, não pudemos registrar sua solicitação desta vez. Por favor, tente novamente mais tarde."
-//         vi.spyOn(repositoryMock, "findById").mockReturnValue({})
-//         vi.spyOn(repositoryJobMock, "findById").mockReturnValue({})
-//         vi.spyOn(repositoryMock, "excludeFavoriteJob").mockRejectedValue(returnError)
+    it("Should return to handle with a throw new error in excludeFavoriteJob", async () => {
+        const paramMock = { idUser: "1", idJob: "2" }
+        const returnError = "Lamentamos, mas parece que estamos enfrentando um problema temporário em nosso servidor. Fique tranquilo, nossa equipe já está trabalhando para resolver isso. Infelizmente, não pudemos registrar sua solicitação desta vez. Por favor, tente novamente mais tarde."
+        vi.spyOn(repositoryMock, "findById").mockReturnValue({})
+        vi.spyOn(repositoryJobMock, "findById").mockReturnValue({})
+        vi.spyOn(repositoryMock, "excludeFavoriteJob").mockRejectedValue(returnError)
 
-//         const result = await sut.excludeFavoriteJob(paramMock)
+        const result = await sut.excludeFavoriteJob(paramMock)
 
-//         expect(result).toStrictEqual(DefaultError.messageError(returnError, STATUS_CODE.INTERNAO_SERVER_ERROR))
-//     })
-//})
+        expect(result).toStrictEqual(DefaultError.messageError(returnError, STATUS_CODE.INTERNAO_SERVER_ERROR))
+    })
+})

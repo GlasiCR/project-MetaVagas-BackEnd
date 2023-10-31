@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import { CreateJobValidation } from "../../../utils/validations/jobValidations/CreateJobValidation";
 import { STATUS_CODE } from "../../../utils/statusCode/StatusCode";
 import { DefaultError } from "../../../utils/defaultErrors/DefaultError";
-import { PaginationValidation } from "../../../utils/validations/paginationValidation/PaginationValidation";
 
 class JobController{
     constructor(private service: any){}
