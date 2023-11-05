@@ -8,6 +8,7 @@
 <br>
 <br>
 </div>
+
 ### Descrição:
 MetaVagas é um site de busca de empregos com a maioria das funcionalidade voltadas para o candidato, mas também é possível criar vaga e seguir alguns números interessantes sobre o mercado como por exemplo qual tecnologia é a mais pesquisada e quais as cidades são mais pesquisadas para estas tecnologias.
 Publicado no Render: https://project-metavagas-backend.onrender.com
@@ -42,13 +43,14 @@ npm start
 
 ### Rotas:
 {{ URL }}: http://localhost:3333/users/
+🔐: Rotas que requerem autenticação
 ##### Rotas de usuário
 | Método | Rota                        | Descrição                            | Exemplo Requisição Body                    |
 |--------|-----------------------------|-------------------------------------|------------------------------------------|
 | POST   | `{{URL}}/users/`            | Criar usuário                        | `json\n{ "name": string, "email" : string, "password": string }` |
-| POST   | `{{URL}}/users/:id/profile`  | Atualização de dados do usuário     | `json\n{ "email": string }`                |
-| POST   | `{{URL}}/users/jobfavorite/` | Favorita e Desfavorita vaga         | `json\n{ "idUser": string, "idJob" : string }` |
-| GET    | `{{URL}}/users/history/:idUser` | Retorna o histórico de buscas do usuário |  |
+| POST   | 🔐 `{{URL}}/users/:id/profile`  | Atualização de dados do usuário     | `json\n{ "email": string }`                |
+| POST   | 🔐 `{{URL}}/users/jobfavorite/` | Favorita e Desfavorita vaga         | `json\n{ "idUser": string, "idJob" : string }` |
+| GET    | 🔐 `{{URL}}/users/history/:idUser` | Retorna o histórico de buscas do usuário |  |
 
 ##### Rota de autenticação de usuário
 | Método | Rota             | Descrição                     | Exemplo Requisição Body               |
@@ -58,10 +60,10 @@ npm start
 ##### Rotas de vagas
 | Método | Rota                               | Descrição                                                  | Exemplo Requisição Body                                                             |
 |--------|------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------|
-| POST   | `{{URL}}/jobs/`                    | Criar vaga                                                 | `json\n{ "company": "A", "salary": 1, "careerLevel": "B", "jobWebsite": "www.m.com", "technology": ["D"] }` |
-| GET    | `{{URL}}/jobs/?`                   | Filtro de vagas de acordo com a especificação da query    | `json\n{ "idUser": "idUser" }`                                                     |
-| GET    | `{{URL}}/jobs/all/?page=1&itensPage=2` | Retorna a lista de vagas de forma paginada. Usar `page` para informar a página necessária e `itensPage` para informar o limite de quantas vagas deseja por página | |
-| GET    | `{{URL}}/jobs/all/`                | Retorna a lista de vagas com suas respectivas informações |                                                                                     |
+| POST   | 🔐 `{{URL}}/jobs/`                    | Criar vaga                                                 | `json\n{ "company": "A", "salary": 1, "careerLevel": "B", "jobWebsite": "www.m.com", "technology": ["D"] }` |
+| GET    | 🔐 `{{URL}}/jobs/?`                   | Filtro de vagas de acordo com a especificação da query    | `json\n{ "idUser": "idUser" }`                                                     |
+| GET    | 🔐 `{{URL}}/jobs/all/?page=1&itensPage=2` | Retorna a lista de vagas de forma paginada. Usar `page` para informar a página necessária e `itensPage` para informar o limite de quantas vagas deseja por página | |
+| GET    | 🔐 `{{URL}}/jobs/all/`                | Retorna a lista de vagas com suas respectivas informações |                                                                                     |
 
 ##### Rotas para usuário não logado
 | Método | Rota                        | Descrição                                                  |
@@ -72,8 +74,8 @@ npm start
 ##### Rotas para obter informações sobre tecnologias mais pesquisadas e as cidades que mais procuraram por estas cidades
 | Método | Rota                            | Descrição                                                      |
 |--------|---------------------------------|---------------------------------------------------------------|
-| GET    | `{{URL}}/tendencies/`           | Retorna as tecnologias mais pesquisadas                        |
-| GET    | `{{URL}}/tendencies/NomeTecnologia` | Retorna as cidades que mais pesquisaram a tecnologia informada no endpoint por parâmetro |
+| GET    | 🔐 `{{URL}}/tendencies/`           | Retorna as tecnologias mais pesquisadas                        |
+| GET    | 🔐 `{{URL}}/tendencies/NomeTecnologia` | Retorna as cidades que mais pesquisaram a tecnologia informada no endpoint por parâmetro |
 
 ### Contribuições:
 Ficarei muito feliz caso queira contribuir com o projeto e desde já agradeço =) Clone este repositório, crie seu branch de trabalho e bora lá!
