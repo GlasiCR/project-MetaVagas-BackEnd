@@ -1,5 +1,13 @@
 ## API MetaVagas
-
+<div style="display: flex;"> <br>
+<img align="center", src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<img align="center", src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
+<img align="center", src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">  
+<img align="center", src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white">
+<img align="center", src="https://img.shields.io/badge/json%20web%20tokens-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink">
+<br>
+<br>
+</div>
 ### Descrição:
 MetaVagas é um site de busca de empregos com a maioria das funcionalidade voltadas para o candidato, mas também é possível criar vaga e seguir alguns números interessantes sobre o mercado como por exemplo qual tecnologia é a mais pesquisada e quais as cidades são mais pesquisadas para estas tecnologias.
 Publicado no Render: https://project-metavagas-backend.onrender.com
