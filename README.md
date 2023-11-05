@@ -1,10 +1,10 @@
-##API MetaVagas
+## API MetaVagas
 
-###Descrição:
+### Descrição:
 MetaVagas é um site de busca de empregos com a maioria das funcionalidade voltadas para o candidato, mas também é possível criar vaga e seguir alguns números interessantes sobre o mercado como por exemplo qual tecnologia é a mais pesquisada e quais as cidades são mais pesquisadas para estas tecnologias.
 Publicado no Render: https://project-metavagas-backend.onrender.com
 
-###Funcionalidades:
+### Funcionalidades:
 •	Cadastro de usuário;
 •	Login com validação de senha (bcrypt) e token (JWT);
 •	Atualização de dados do usuário;
@@ -17,7 +17,7 @@ Publicado no Render: https://project-metavagas-backend.onrender.com
 •	Cadastrar Vagas;
 •	Teste unitário no Service.
 
-###Bibliotecas necessárias:
+### Bibliotecas necessárias:
 Bcrypt
 Mongoose
 Jsonwebtoken
@@ -25,16 +25,16 @@ Yup
 Vitest
 typescript
 
-###Variáveis de Ambiente:
+### Variáveis de Ambiente:
 Na raiz deste projeto, no arquivo .env configure: DATABASE_URL= PORT= SECRET_KEY=
 Se não informar "PORT", automaticamente será assumida a porta 3333
 
-###Iniciar o Servidor:
+### Iniciar o Servidor:
 npm start
 
-###Rotas:
+### Rotas:
 {{ URL }}: http://localhost:3333/users/
-#####Rotas de usuário
+##### Rotas de usuário
 | Método | Rota                        | Descrição                            | Exemplo Requisição Body                    |
 |--------|-----------------------------|-------------------------------------|------------------------------------------|
 | POST   | `{{URL}}/users/`            | Criar usuário                        | `json\n{ "name": string, "email" : string, "password": string }` |
@@ -42,12 +42,12 @@ npm start
 | POST   | `{{URL}}/users/jobfavorite/` | Favorita e Desfavorita vaga         | `json\n{ "idUser": string, "idJob" : string }` |
 | GET    | `{{URL}}/users/history/:idUser` | Retorna o histórico de buscas do usuário |  |
 
-#####Rota de autenticação de usuário
+##### Rota de autenticação de usuário
 | Método | Rota             | Descrição                     | Exemplo Requisição Body               |
 |--------|------------------|------------------------------|--------------------------------------|
 | POST   | `{{URL}}/login/` | Valida e autentica usuário    | `json\n{ "email" : string, "password": string }` |
 
-#####Rotas de vagas
+##### Rotas de vagas
 | Método | Rota                               | Descrição                                                  | Exemplo Requisição Body                                                             |
 |--------|------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------|
 | POST   | `{{URL}}/jobs/`                    | Criar vaga                                                 | `json\n{ "company": "A", "salary": 1, "careerLevel": "B", "jobWebsite": "www.m.com", "technology": ["D"] }` |
@@ -55,19 +55,19 @@ npm start
 | GET    | `{{URL}}/jobs/all/?page=1&itensPage=2` | Retorna a lista de vagas de forma paginada. Usar `page` para informar a página necessária e `itensPage` para informar o limite de quantas vagas deseja por página | |
 | GET    | `{{URL}}/jobs/all/`                | Retorna a lista de vagas com suas respectivas informações |                                                                                     |
 
-#####Rotas para usuário não logado
+##### Rotas para usuário não logado
 | Método | Rota                        | Descrição                                                  |
 |--------|-----------------------------|-----------------------------------------------------------|
 | GET    | `{{URL}}/allJobs/`          | Retorna a lista de vagas, porém com apenas algumas informações |
 | GET    | `{{URL}}/?`                 | Filtro de vagas de acordo com a especificação da query    |
 
-#####Rotas para obter informações sobre tecnologias mais pesquisadas e as cidades que mais procuraram por estas cidades
+##### Rotas para obter informações sobre tecnologias mais pesquisadas e as cidades que mais procuraram por estas cidades
 | Método | Rota                            | Descrição                                                      |
 |--------|---------------------------------|---------------------------------------------------------------|
 | GET    | `{{URL}}/tendencies/`           | Retorna as tecnologias mais pesquisadas                        |
 | GET    | `{{URL}}/tendencies/NomeTecnologia` | Retorna as cidades que mais pesquisaram a tecnologia informada no endpoint por parâmetro |
 
-###Contribuições:
+### Contribuições:
 Ficarei muito feliz caso queira contribuir com o projeto e desde já agradeço =) Clone este repositório, crie seu branch de trabalho e bora lá!
 Ao final, abra um Pull Request explicando o problema resolvido ou recurso realizado.
 Contato: https://www.linkedin.com/in/glasielle-cirilo-dev-fullstack/
