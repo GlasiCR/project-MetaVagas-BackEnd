@@ -43,6 +43,7 @@ npm start
 
 ### Rotas:
 {{ URL }}: http://localhost:3333/users/
+
 🔐: Rotas que requerem autenticação
 ##### Rotas de usuário
 | Método | Rota                        | Descrição                            | Exemplo Requisição Body                    |
