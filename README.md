@@ -15,15 +15,25 @@ Publicado no Render: https://project-metavagas-backend.onrender.com
 
 ### Funcionalidades:
 •	Cadastro de usuário;
+
 •	Login com validação de senha (bcrypt) e token (JWT);
+
 •	Atualização de dados do usuário;
+
 •	Opção de favoritar e desfavoritar vagas;
+
 •	Histórico de busca do usuário;
+
 •	Pesquisa por filtro e busca;
+
 •	Dados consolidados sobre as tecnologias mais buscadas e as cidades mais buscadas para essa tecnologia;
+
 •	Paginação;
-•	Rotas com retorno diferente para usuários logados e não logados.
+
+•	Rotas com retorno diferente para usuários logados e não logados;
+
 •	Cadastrar Vagas;
+
 •	Teste unitário no Service.
 
 ### Bibliotecas necessárias:
